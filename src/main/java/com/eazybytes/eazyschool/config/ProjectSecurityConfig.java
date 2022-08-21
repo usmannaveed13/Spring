@@ -8,8 +8,14 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 public class ProjectSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+
+        // Permit All Requests inside the web application
         http.authorizeRequests().anyRequest().permitAll()
                 .and().formLogin()
                 .and().httpBasic();
+        // Deny All Requests inside the web application
+//        http.authorizeRequests().anyRequest().denyAll()
+//                .and().formLogin()
+//                .and().httpBasic();
     }
 }
