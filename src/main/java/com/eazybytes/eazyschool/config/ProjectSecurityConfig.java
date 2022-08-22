@@ -18,7 +18,8 @@ public class ProjectSecurityConfig extends WebSecurityConfigurerAdapter {
 //                .and().formLogin()
 //                .and().httpBasic();
 
-        http.authorizeRequests()
+        http.csrf().disable()
+                .authorizeRequests()
                 .mvcMatchers("/home").permitAll()
                 .mvcMatchers("/holidays/**").permitAll()
                 .mvcMatchers("/contact").permitAll()
