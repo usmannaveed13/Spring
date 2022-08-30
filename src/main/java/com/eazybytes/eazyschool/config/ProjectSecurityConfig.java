@@ -20,8 +20,10 @@ public class ProjectSecurityConfig extends WebSecurityConfigurerAdapter {
 //        http.authorizeRequests().anyRequest().denyAll()
 //                .and().formLogin()
 //                .and().httpBasic();
+        // removing h2 rout because now using mysql
 
-        http.csrf().ignoringAntMatchers("/saveMsg").ignoringAntMatchers("/h2-console/**").and()
+
+        http.csrf().ignoringAntMatchers("/saveMsg").and()
                 .authorizeRequests()
                 .mvcMatchers("/dashboard").authenticated()
                 .mvcMatchers("/displayMessages").hasRole("ADMIN")
@@ -35,10 +37,11 @@ public class ProjectSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and().formLogin().loginPage("/login")
                 .defaultSuccessUrl("/dashboard").failureUrl("/login?error=true").permitAll()
                 .and().logout().logoutSuccessUrl("/login?logout=true").invalidateHttpSession(true).permitAll()
-                .and().authorizeRequests().antMatchers("/h2-console/**").permitAll()
+//                .and().authorizeRequests().antMatchers("/h2-console/**").permitAll()
                 .and().httpBasic();
 
-        http.headers().frameOptions().disable();
+        // comments it because now are not using h2 database
+//        http.headers().frameOptions().disable();
 
     }
 

@@ -60,11 +60,18 @@
             <artifactId>thymeleaf-extras-springsecurity5</artifactId>
         </dependency>
 
+<!--        now shifting application to h2 database to mysql-->
+
+<!--        <dependency>-->
+<!--            <groupId>com.h2database</groupId>-->
+<!--            <artifactId>h2</artifactId>-->
+<!--            <scope>runtime</scope>-->
+<!--            <version>1.4.198</version>-->
+<!--        </dependency>-->
         <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
             <scope>runtime</scope>
-            <version>1.4.198</version>
         </dependency>
 
         <dependency>
