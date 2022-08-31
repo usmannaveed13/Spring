@@ -1,7 +1,10 @@
 package com.eazybytes.eazyschool.model;
 
 import lombok.Data;
+import org.hibernate.annotations.GenericGenerator;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
@@ -13,8 +16,14 @@ equals(), hashCode(), toString() methods & Constructor at compile time.
 This makes our code short and clean.
 * */
 @Data
+@Entity
+@Table(name = "contact_msg")
 public class Contact extends BaseEntity{
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
+    @GenericGenerator(name = "native", strategy = "native")
+    @Column(name = "contact_id")
     private int contactId;
 
     /*
