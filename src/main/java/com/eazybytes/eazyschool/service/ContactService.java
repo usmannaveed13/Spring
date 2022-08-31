@@ -40,8 +40,9 @@ public class ContactService {
       //  log.info(contact.toString());
         boolean isSaved = false;
         contact.setStatus(EazySchoolConstants.OPEN);
-        contact.setCreatedBy(EazySchoolConstants.ANONYMOUS);
-        contact.setCreatedAt(LocalDateTime.now());
+        // now this responsibility is spring auditing feature
+//        contact.setCreatedBy(EazySchoolConstants.ANONYMOUS);
+//        contact.setCreatedAt(LocalDateTime.now());
         // comment code due to reason using spring data Jpa replacing JdbcTemplate
 //        int result = contactRepository.saveContactMsg(contact);
         Contact saveContact = contactRepository.save(contact);
@@ -56,13 +57,14 @@ public class ContactService {
         return contactMsgs;
     }
 
-    public boolean updateMsgStatus(int contactId, String updatedBy){
+    public boolean updateMsgStatus(int contactId){
         boolean isUpdated = false;
         Optional<Contact> contact = contactRepository.findById(contactId);
         contact.ifPresent(contact1 -> {
             contact1.setStatus(EazySchoolConstants.CLOSE);
-            contact1.setUpdatedBy(updatedBy);
-            contact1.setUpdatedAt(LocalDateTime.now());
+            // now this responsibility is spring auditing feature
+//            contact1.setUpdatedBy(updatedBy);
+//            contact1.setUpdatedAt(LocalDateTime.now());
         });
         Contact updatedContact = contactRepository.save(contact.get());
         if(null != updatedContact && updatedContact.getUpdatedBy()!=null) {
