@@ -46,14 +46,16 @@ public class ProjectSecurityConfig extends WebSecurityConfigurerAdapter {
 
     }
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .withUser("user").password("12345").roles("USER")
-                .and()
-                .withUser("admin").password("54321").roles("ADMIN")
-                .and().passwordEncoder(NoOpPasswordEncoder.getInstance());
-    }
+   // we are stop using inMemoryAuthentication and now we are taking user and password from database and authenticate it
+
+//    @Override
+//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+//        auth.inMemoryAuthentication()
+//                .withUser("user").password("12345").roles("USER")
+//                .and()
+//                .withUser("admin").password("54321").roles("ADMIN")
+//                .and().passwordEncoder(NoOpPasswordEncoder.getInstance());
+//    }
 
 
 }
