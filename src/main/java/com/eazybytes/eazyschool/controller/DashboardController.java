@@ -21,8 +21,11 @@ public class DashboardController {
     @RequestMapping("/dashboard")
     public String displayDashboard(Model model, Authentication authentication, HttpSession session) {
         Person person = personRepository.readByEmail(authentication.getName());
-        model.addAttribute("username", authentication.getName());
+        model.addAttribute("username", person.getName());
         model.addAttribute("roles", authentication.getAuthorities().toString());
+        if(null != person.getEazyClass() && null != person.getEazyClass().getName()){
+            model.addAttribute("enrolledClass", person.getEazyClass().getName());
+        }
         session.setAttribute("loggedInPerson", person);
         // its test for global exception handler via AOP`
         //throw new RuntimeException("It's been a bad day!!");
