@@ -69,22 +69,27 @@ public class ContactService {
 
     public boolean updateMsgStatus(int contactId){
         boolean isUpdated = false;
-        Optional<Contact> contact = contactRepository.findById(contactId);
-        contact.ifPresent(contact1 -> {
-            contact1.setStatus(EazySchoolConstants.CLOSE);
+        // comment code due to custom update queries
+//        Optional<Contact> contact = contactRepository.findById(contactId);
+//        contact.ifPresent(contact1 -> {
+//            contact1.setStatus(EazySchoolConstants.CLOSE);
             // now this responsibility is spring auditing feature
 //            contact1.setUpdatedBy(updatedBy);
 //            contact1.setUpdatedAt(LocalDateTime.now());
-        });
-        Contact updatedContact = contactRepository.save(contact.get());
-        if(null != updatedContact && updatedContact.getUpdatedBy()!=null) {
-            isUpdated = true;
-        }
+      //  });
+//        Contact updatedContact = contactRepository.save(contact.get());
+//        if(null != updatedContact && updatedContact.getUpdatedBy()!=null) {
+//            isUpdated = true;
+//        }
 
 //        int result = contactRepository.updateMsgStatus(contactId,EazySchoolConstants.CLOSE, updatedBy);
 //        if(result>0) {
 //            isUpdated = true;
 //        }
+        int rows = contactRepository.updateStatusById(EazySchoolConstants.CLOSE,contactId);
+        if (rows > 0) {
+            isUpdated = true;
+        }
         return isUpdated;
     }
 
