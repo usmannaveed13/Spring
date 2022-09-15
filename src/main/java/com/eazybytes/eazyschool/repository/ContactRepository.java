@@ -3,7 +3,10 @@ package com.eazybytes.eazyschool.repository;
 import com.eazybytes.eazyschool.model.Contact;
 import com.eazybytes.eazyschool.rowmappers.ContactRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementSetter;
 import org.springframework.stereotype.Repository;
@@ -20,7 +23,7 @@ type to the Spring context and indicate that given Bean is used to perform
 DB related operations and
 * */
 @Repository
-public interface ContactRepository extends CrudRepository<Contact, Integer> {
+public interface ContactRepository extends PagingAndSortingRepository<Contact, Integer> {
     // comment all code due to reason of shifting jdbcTemplate to spring data JPA
 
 //    private final JdbcTemplate jdbcTemplate;
@@ -60,4 +63,6 @@ public interface ContactRepository extends CrudRepository<Contact, Integer> {
 //    }
 
     List<Contact> findByStatus(String status);
+
+    Page<Contact> findByStatus(String status, Pageable pageable);
 }
