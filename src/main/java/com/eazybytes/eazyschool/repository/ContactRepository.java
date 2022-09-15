@@ -5,6 +5,7 @@ import com.eazybytes.eazyschool.rowmappers.ContactRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -63,6 +64,9 @@ public interface ContactRepository extends PagingAndSortingRepository<Contact, I
 //    }
 
     List<Contact> findByStatus(String status);
-
+   // JPQL in which we used entity name and field as column
+   // @Query("SELECT c FROM Contact c where c.status = :status")
+   // native SQL query we used actual table and column name
+    @Query(value = "SELECT * FROM contact_msg  where status = :status", nativeQuery = true)
     Page<Contact> findByStatus(String status, Pageable pageable);
 }
