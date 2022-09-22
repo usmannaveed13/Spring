@@ -27,7 +27,7 @@ public class ProjectSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
         http.csrf().ignoringAntMatchers("/saveMsg").ignoringAntMatchers("/public/**")
-                .ignoringAntMatchers("/api/**").and()
+                .ignoringAntMatchers("/api/**").ignoringAntMatchers("/data-api/**").and()
                 .authorizeRequests()
                 .mvcMatchers("/dashboard").authenticated()
                 .mvcMatchers("/displayProfile").authenticated()
@@ -36,6 +36,7 @@ public class ProjectSecurityConfig extends WebSecurityConfigurerAdapter {
                 .mvcMatchers("/displayMessages").hasRole("ADMIN")
                 .mvcMatchers("/admin/**").hasRole("ADMIN")
                 .mvcMatchers("/api/**").authenticated()
+                .mvcMatchers("/data-api/**").authenticated()
                 .mvcMatchers("/home").permitAll()
                 .mvcMatchers("/holidays/**").permitAll()
                 .mvcMatchers("/contact").permitAll()
