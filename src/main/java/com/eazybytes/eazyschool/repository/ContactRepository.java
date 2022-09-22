@@ -71,7 +71,7 @@ public interface ContactRepository extends PagingAndSortingRepository<Contact, I
    // @Query("SELECT c FROM Contact c where c.status = :status")
    // native SQL query we used actual table and column name
     @Query(value = "SELECT * FROM contact_msg  where status = :status", nativeQuery = true)
-    Page<Contact> findByStatus(String status, Pageable pageable);
+    Page<Contact> findByStatusWithQuery(String status, Pageable pageable);
 
     @Transactional
     @Modifying

@@ -67,7 +67,7 @@ public class ContactService {
 
         // revert due to dynamic sorting not working in @NamedNativeQuery
    //     Page<Contact> msgPage = contactRepository.findOpenMsgs(
-        Page<Contact> msgPage = contactRepository.findByStatus(
+        Page<Contact> msgPage = contactRepository.findByStatusWithQuery(
                 EazySchoolConstants.OPEN,pageable);
         return msgPage;
     }

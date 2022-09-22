@@ -18,7 +18,8 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 @Slf4j
-@Controller
+// we make custom name because spring date rest have same controller name
+@Controller("profileControllerBear")
 public class ProfileController {
 
     @Autowired
