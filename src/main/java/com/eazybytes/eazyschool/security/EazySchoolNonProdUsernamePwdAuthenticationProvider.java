@@ -19,8 +19,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-@Profile("prod")
-public class EazySchoolUsernamePwdAuthenticationProvider implements AuthenticationProvider
+@Profile("!prod")
+public class EazySchoolNonProdUsernamePwdAuthenticationProvider
+        implements AuthenticationProvider
 {
     @Autowired
     private PersonRepository personRepository;
@@ -34,8 +35,7 @@ public class EazySchoolUsernamePwdAuthenticationProvider implements Authenticati
         String email = authentication.getName();
         String pwd = authentication.getCredentials().toString();
         Person person = personRepository.readByEmail(email);
-        if(null != person && person.getPersonId()>0 &&
-                passwordEncoder.matches(pwd,person.getPwd())){
+        if(null != person && person.getPersonId()>0){
             return new UsernamePasswordAuthenticationToken(
                     email, null, getGrantedAuthorities(person.getRoles()));
         }else{

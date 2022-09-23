@@ -103,7 +103,8 @@ public class ContactService {
 //            isUpdated = true;
 //        }
        // int rows = contactRepository.updateStatusById(EazySchoolConstants.CLOSE,contactId);
-        int rows = contactRepository.updateMsgStatus(EazySchoolConstants.CLOSE,contactId);
+      //  int rows = contactRepository.updateMsgStatus(EazySchoolConstants.CLOSE,contactId);
+        int rows = contactRepository.updateMsgStatusNative(EazySchoolConstants.CLOSE,contactId);
         if (rows > 0) {
             isUpdated = true;
         }
